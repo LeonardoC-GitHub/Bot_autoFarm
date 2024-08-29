@@ -1,14 +1,16 @@
 import pyautogui
 import time
 
+SoulTickt = 5
+
 def localizar_missoes():
     print('Tentando localizar Missões...')
     missoes = pyautogui.locateOnScreen('Imagens\\Missoes.png', confidence=0.4)
     if missoes is None:
-        print('Missões não encontrada')
+        print('Missões não encontrada \n')
         return False
     else:
-        print('Missões encontrada')
+        print('Missões encontrada \n')
         missoes = pyautogui.center(missoes)
         pyautogui.click(missoes.x, missoes.y)
         time.sleep(1.5)
@@ -18,10 +20,10 @@ def localizar_eventos():
     print('Tentando localizar Eventos...')
     eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
     if eventos is None:
-        print('Eventos não encontrada')
+        print('Eventos não encontrada \n')
         return False
     else:
-        print('Eventos encontrados')
+        print('Eventos encontrado \ns')
         eventos = pyautogui.center(eventos)
         pyautogui.click(eventos.x, eventos.y)
         time.sleep(3)
@@ -31,10 +33,10 @@ def localizar_ev_atual():
     print('Tentando localizar Evento Atual...')
     EvAtual = pyautogui.locateOnScreen('Imagens\\EvAtual.png', confidence=0.4)
     if EvAtual is None:
-        print('Evento Atual não encontrado')
+        print('Evento Atual não encontrado \n')
         return False
     else:
-        print('Evento Atual encontrado')
+        print('Evento Atual encontrado \n')
         EvAtual = pyautogui.center(EvAtual)
         pyautogui.click(EvAtual.x, EvAtual.y)
         time.sleep(1.5)
@@ -44,10 +46,10 @@ def localizar_quest():
     print('Tentando localizar Quest...')
     Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.5)
     if Quest is None:
-        print('Quest não encontrada')
+        print('Quest não encontrada \n')
         return False
     else:
-        print('Quest encontrada')
+        print('Quest encontrada \n')
         Quest = pyautogui.center(Quest)
         pyautogui.click(Quest.x, Quest.y)
         time.sleep(1)
@@ -57,10 +59,10 @@ def localizar_dificuldade():
     print('Tentando localizar Dificuldade...')
     Dificuldade = pyautogui.locateOnScreen('Imagens\\Dificuldade.png', confidence=0.5)
     if Dificuldade is None:
-        print('Dificuldade não encontrada')
+        print('Dificuldade não encontrada \n')
         return False
     else:
-        print('Dificuldade encontrada')
+        print('Dificuldade encontrada \n')
         Dificuldade = pyautogui.center(Dificuldade)
         pyautogui.click(Dificuldade.x, Dificuldade.y)
         time.sleep(1)
@@ -70,10 +72,10 @@ def localizar_prepare_for_quest():
     print('Tentando localizar Prepare for Quest...')
     PrepreForQuest = pyautogui.locateOnScreen('Imagens\\PrepreForQuest.png', confidence=0.7)
     if PrepreForQuest is None:
-        print('Prepare for Quest não encontrado')
+        print('Prepare for Quest não encontrado \n')
         return False
     else:
-        print('Prepare for Quest encontrado')
+        print('Prepare for Quest encontrado \n')
         PrepreForQuest = pyautogui.center(PrepreForQuest)
         pyautogui.click(PrepreForQuest.x, PrepreForQuest.y)
         time.sleep(4)
@@ -83,32 +85,75 @@ def localizar_start_quest():
     print('Tentando localizar Start Quest...')
     StartQuest = pyautogui.locateOnScreen('Imagens\\StartQuest.png', confidence=0.7)
     if StartQuest is None:
-        print('Start Quest não encontrado')
+        print('Start Quest não encontrado \n')
         return False
     else:
-        print('Start Quest encontrado')
+        print('Start Quest encontrado \n')
         StartQuest = pyautogui.center(StartQuest)
         pyautogui.click(StartQuest.x, StartQuest.y)
-        time.sleep(1)
+        time.sleep(150)
+        global SoulTickt
         SoulTickt = SoulTickt -1
+        print('Soul Tickts restandtes: ',SoulTickt)
         return True
     
 def localizar_exit():
     print('Tentando sair da Quest...')
+
+    if pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7) is None:
+        time.sleep(5)
+    else:
+        print('Saida 1 funcionou \n')
+        Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.4)
+        Exit = pyautogui.center(Exit)
+        pyautogui.doubleClick(Exit.x, Exit.y)
+        time.sleep(10)
+        return True
+
+def localizar_exit2():
+    print('Tentando sair da Quest...')
+ 
+    if pyautogui.locateOnScreen('Imagens\\Exit2.png', confidence=0.7) is None:
+        time.sleep(5)
+    else:
+        print('Saida 2 funcionou \n')
+        Exit2 = pyautogui.locateOnScreen('Imagens\\Exit2.png', confidence=0.4)
+        Exit2 = pyautogui.center(Exit2)
+        pyautogui.doubleClick(Exit2.x, Exit2.y)
+        time.sleep(10)
+        return True
+   
+def localizar_Close():
+    print('Tentando sair da Quest...')
+        
+    if pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8) is None:
+        time.sleep(5)
+    else:
+        print('Close Quest encontrado \n')
+        Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.4)
+        Close = pyautogui.center(Close)
+        pyautogui.doubleClick(Close.x, Close.y)
+        time.sleep(2)
+            
+
+def localizar_Retry():
+    print('Tentando sair da Quest...')
     while 1:
         
-        if pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7) is None:
+        if pyautogui.locateOnScreen('Imagens\\Retry.png', confidence=0.7) is None:
             time.sleep(5)
         else:
-            print('Start Quest encontrado')
-            Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7)
-            Exit = pyautogui.center(Exit)
-            pyautogui.click(Exit.x, Exit.y)
-            time.sleep(1)
-            SoulTickt = SoulTickt -1
-            return True
+            print('Start Quest encontrado \n')
+            Retry = pyautogui.locateOnScreen('Imagens\\Retry.png', confidence=0.4)
+            Retry = pyautogui.center(Retry)
+            pyautogui.doubleClick(Retry.x, Retry.y)
+            time.sleep(2)
+ 
+        
+def FuncStart():
+      if localizar_start_quest():
+           localizar_exit()
     
-
 def main():
     print('Inicio')
     time.sleep(1)
@@ -120,9 +165,13 @@ def main():
                     if localizar_dificuldade():
                         if localizar_prepare_for_quest():
                            if localizar_start_quest():
-                               localizar_exit()
+                               if localizar_exit():
+                                   if localizar_exit2():
+                                       if localizar_Close():
+                                            localizar_Retry()
+                                       
+                                   
 
 
 if __name__ == "__main__":
-    SoulTickt = 5
     main()
