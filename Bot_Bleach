@@ -1,1 +1,72 @@
 import pyautogui
+import time
+
+print('inicio')
+
+# Espera um pouco para garantir que a tela esteja carregada
+time.sleep(1)
+
+# Tenta localizar a imagem na tela
+missoes = pyautogui.locateOnScreen('Missoes.png', confidence=0.4)
+
+if missoes is None:
+    print('missoes não encontrada')
+else:
+    print('Imagem encontrada')
+    missoes = pyautogui.center(missoes)
+    pyautogui.click(missoes.x, missoes.y)
+    time.sleep(1.5)
+
+    eventos = pyautogui.locateOnScreen('Eventos.png', confidence=0.4)
+    if eventos is None:
+        print('eventos não encontrada')
+    else:
+        print('eventos encontrados')
+        eventos = pyautogui.center(eventos)
+        pyautogui.click(eventos.x, eventos.y)
+        time.sleep(3)
+
+        EvAtual = pyautogui.locateOnScreen('EvAtual.png', confidence=0.4)
+        if EvAtual is None:
+            print('EvAtual não encontrada')
+        else:
+            print('EvAtual encontrado')
+            EvAtual = pyautogui.center(EvAtual)
+            pyautogui.click(EvAtual.x, EvAtual.y)
+            time.sleep(1.5)
+
+            Quest = pyautogui.locateOnScreen('Quest.png', confidence=0.5)
+            if Quest is None:
+                print('Quest não encontrada')
+            else:
+                print('Quest encontrada')
+                Quest = pyautogui.center(Quest)
+                pyautogui.click(Quest.x, Quest.y)
+                time.sleep(1)
+
+                Dificuldade = pyautogui.locateOnScreen('Dificuldade.png', confidence=0.5)
+                if Dificuldade is None:
+                    print('Dificuldade não encontrada')
+                else:
+                    print('Dificuldade encontrada')
+                    Dificuldade = pyautogui.center(Dificuldade)
+                    pyautogui.click(Dificuldade.x, Dificuldade.y)
+                    time.sleep(1)
+
+                    PrepreForQuest = pyautogui.locateOnScreen('PrepreForQuest.png', confidence=0.7)
+                    if PrepreForQuest is None:
+                        print('PrepreForQuest não encontrado')
+                    else:
+                        print('PrepreForQuest encontrado')
+                        PrepreForQuest = pyautogui.center(PrepreForQuest)
+                        pyautogui.click(PrepreForQuest.x, PrepreForQuest.y)
+                        time.sleep(4)
+
+                        StartQuest = pyautogui.locateOnScreen('StartQuest.png', confidence=0.7)
+                        if StartQuest is None:
+                            print('StartQuest não encontrado')
+                        else:
+                            print('StartQuest encontrado')
+                            StartQuest = pyautogui.center(StartQuest)
+                            pyautogui.click(StartQuest.x, StartQuest.y)
+                            time.sleep(1)
