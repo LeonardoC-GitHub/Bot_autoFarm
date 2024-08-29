@@ -126,7 +126,7 @@ def localizar_exit2():
 def localizar_Close():
     print('Tentando sair da Quest...')
         
-    if pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8) is None:
+    if pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.98) is None:
         time.sleep(5)
     else:
         print('Close Quest encontrado \n')
