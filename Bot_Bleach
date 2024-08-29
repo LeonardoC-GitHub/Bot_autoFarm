@@ -90,7 +90,24 @@ def localizar_start_quest():
         StartQuest = pyautogui.center(StartQuest)
         pyautogui.click(StartQuest.x, StartQuest.y)
         time.sleep(1)
+        SoulTickt = SoulTickt -1
         return True
+    
+def localizar_exit():
+    print('Tentando sair da Quest...')
+    while 1:
+        
+        if pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7) is None:
+            time.sleep(5)
+        else:
+            print('Start Quest encontrado')
+            Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7)
+            Exit = pyautogui.center(Exit)
+            pyautogui.click(Exit.x, Exit.y)
+            time.sleep(1)
+            SoulTickt = SoulTickt -1
+            return True
+    
 
 def main():
     print('Inicio')
@@ -102,7 +119,10 @@ def main():
                 if localizar_quest():
                     if localizar_dificuldade():
                         if localizar_prepare_for_quest():
-                            localizar_start_quest()
+                           if localizar_start_quest():
+                               localizar_exit()
+
 
 if __name__ == "__main__":
+    SoulTickt = 5
     main()
