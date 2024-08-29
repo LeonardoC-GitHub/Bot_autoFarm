@@ -1,72 +1,108 @@
 import pyautogui
 import time
 
-print('inicio')
-
-# Espera um pouco para garantir que a tela esteja carregada
-time.sleep(1)
-
-# Tenta localizar a imagem na tela
-missoes = pyautogui.locateOnScreen('Missoes.png', confidence=0.4)
-
-if missoes is None:
-    print('missoes não encontrada')
-else:
-    print('Imagem encontrada')
-    missoes = pyautogui.center(missoes)
-    pyautogui.click(missoes.x, missoes.y)
-    time.sleep(1.5)
-
-    eventos = pyautogui.locateOnScreen('Eventos.png', confidence=0.4)
-    if eventos is None:
-        print('eventos não encontrada')
+def localizar_missoes():
+    print('Tentando localizar Missões...')
+    missoes = pyautogui.locateOnScreen('Imagens\\Missoes.png', confidence=0.4)
+    if missoes is None:
+        print('Missões não encontrada')
+        return False
     else:
-        print('eventos encontrados')
+        print('Missões encontrada')
+        missoes = pyautogui.center(missoes)
+        pyautogui.click(missoes.x, missoes.y)
+        time.sleep(1.5)
+        return True
+
+def localizar_eventos():
+    print('Tentando localizar Eventos...')
+    eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
+    if eventos is None:
+        print('Eventos não encontrada')
+        return False
+    else:
+        print('Eventos encontrados')
         eventos = pyautogui.center(eventos)
         pyautogui.click(eventos.x, eventos.y)
         time.sleep(3)
+        return True
 
-        EvAtual = pyautogui.locateOnScreen('EvAtual.png', confidence=0.4)
-        if EvAtual is None:
-            print('EvAtual não encontrada')
-        else:
-            print('EvAtual encontrado')
-            EvAtual = pyautogui.center(EvAtual)
-            pyautogui.click(EvAtual.x, EvAtual.y)
-            time.sleep(1.5)
+def localizar_ev_atual():
+    print('Tentando localizar Evento Atual...')
+    EvAtual = pyautogui.locateOnScreen('Imagens\\EvAtual.png', confidence=0.4)
+    if EvAtual is None:
+        print('Evento Atual não encontrado')
+        return False
+    else:
+        print('Evento Atual encontrado')
+        EvAtual = pyautogui.center(EvAtual)
+        pyautogui.click(EvAtual.x, EvAtual.y)
+        time.sleep(1.5)
+        return True
 
-            Quest = pyautogui.locateOnScreen('Quest.png', confidence=0.5)
-            if Quest is None:
-                print('Quest não encontrada')
-            else:
-                print('Quest encontrada')
-                Quest = pyautogui.center(Quest)
-                pyautogui.click(Quest.x, Quest.y)
-                time.sleep(1)
+def localizar_quest():
+    print('Tentando localizar Quest...')
+    Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.5)
+    if Quest is None:
+        print('Quest não encontrada')
+        return False
+    else:
+        print('Quest encontrada')
+        Quest = pyautogui.center(Quest)
+        pyautogui.click(Quest.x, Quest.y)
+        time.sleep(1)
+        return True
 
-                Dificuldade = pyautogui.locateOnScreen('Dificuldade.png', confidence=0.5)
-                if Dificuldade is None:
-                    print('Dificuldade não encontrada')
-                else:
-                    print('Dificuldade encontrada')
-                    Dificuldade = pyautogui.center(Dificuldade)
-                    pyautogui.click(Dificuldade.x, Dificuldade.y)
-                    time.sleep(1)
+def localizar_dificuldade():
+    print('Tentando localizar Dificuldade...')
+    Dificuldade = pyautogui.locateOnScreen('Imagens\\Dificuldade.png', confidence=0.5)
+    if Dificuldade is None:
+        print('Dificuldade não encontrada')
+        return False
+    else:
+        print('Dificuldade encontrada')
+        Dificuldade = pyautogui.center(Dificuldade)
+        pyautogui.click(Dificuldade.x, Dificuldade.y)
+        time.sleep(1)
+        return True
 
-                    PrepreForQuest = pyautogui.locateOnScreen('PrepreForQuest.png', confidence=0.7)
-                    if PrepreForQuest is None:
-                        print('PrepreForQuest não encontrado')
-                    else:
-                        print('PrepreForQuest encontrado')
-                        PrepreForQuest = pyautogui.center(PrepreForQuest)
-                        pyautogui.click(PrepreForQuest.x, PrepreForQuest.y)
-                        time.sleep(4)
+def localizar_prepare_for_quest():
+    print('Tentando localizar Prepare for Quest...')
+    PrepreForQuest = pyautogui.locateOnScreen('Imagens\\PrepreForQuest.png', confidence=0.7)
+    if PrepreForQuest is None:
+        print('Prepare for Quest não encontrado')
+        return False
+    else:
+        print('Prepare for Quest encontrado')
+        PrepreForQuest = pyautogui.center(PrepreForQuest)
+        pyautogui.click(PrepreForQuest.x, PrepreForQuest.y)
+        time.sleep(4)
+        return True
 
-                        StartQuest = pyautogui.locateOnScreen('StartQuest.png', confidence=0.7)
-                        if StartQuest is None:
-                            print('StartQuest não encontrado')
-                        else:
-                            print('StartQuest encontrado')
-                            StartQuest = pyautogui.center(StartQuest)
-                            pyautogui.click(StartQuest.x, StartQuest.y)
-                            time.sleep(1)
+def localizar_start_quest():
+    print('Tentando localizar Start Quest...')
+    StartQuest = pyautogui.locateOnScreen('Imagens\\StartQuest.png', confidence=0.7)
+    if StartQuest is None:
+        print('Start Quest não encontrado')
+        return False
+    else:
+        print('Start Quest encontrado')
+        StartQuest = pyautogui.center(StartQuest)
+        pyautogui.click(StartQuest.x, StartQuest.y)
+        time.sleep(1)
+        return True
+
+def main():
+    print('Inicio')
+    time.sleep(1)
+
+    if localizar_missoes():
+        if localizar_eventos():
+            if localizar_ev_atual():
+                if localizar_quest():
+                    if localizar_dificuldade():
+                        if localizar_prepare_for_quest():
+                            localizar_start_quest()
+
+if __name__ == "__main__":
+    main()
