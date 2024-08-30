@@ -100,29 +100,53 @@ def localizar_start_quest():
 
 def localizar_exit():
     print('Tentando sair da Quest...')
-    try:
-        Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7)
-        print('Saída 1 encontrada \n')
-        Exit = pyautogui.center(Exit)
-        pyautogui.doubleClick(Exit.x, Exit.y)
-        time.sleep(10)
-        return True
-    except pyautogui.ImageNotFoundException:
-        print('Erro: Imagem "Exit" não encontrada na tela.')
-        return False
+    while True:
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Close" não encontrada na tela.Tentando novamente...')
+            
+        try:
+            Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7)
+            print('Saída 1 encontrada \n')
+            Exit = pyautogui.center(Exit)
+            pyautogui.doubleClick(Exit.x, Exit.y)
+            time.sleep(4)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Exit" não encontrada na tela.Tentando novamente...')
+            time.sleep(2)
+    
+    
 
 def localizar_exit2():
     print('Tentando sair da Quest...')
-    try:
-        Exit2 = pyautogui.locateOnScreen('Imagens\\Exit2.png', confidence=0.7)
-        print('Saída 2 encontrada \n')
-        Exit2 = pyautogui.center(Exit2)
-        pyautogui.doubleClick(Exit2.x, Exit2.y)
-        time.sleep(8)
-        return True
-    except pyautogui.ImageNotFoundException:
-        print('Erro: Imagem "Exit2" não encontrada na tela.')
-        return False
+    while True:
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Close" não encontrada na tela.Tentando novamente...')
+            
+        try:
+            Exit2 = pyautogui.locateOnScreen('Imagens\\Exit2.png', confidence=0.7)
+            print('Saída 2 encontrada \n')
+            Exit2 = pyautogui.center(Exit2)
+            pyautogui.doubleClick(Exit2.x, Exit2.y)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Exit2" não encontrada na tela.Tentando novamente...')
+            time.sleep(2)
+
 
 def localizar_Close():
     print('Tentando fechar a Quest...')
@@ -185,6 +209,5 @@ def main():
 
 if __name__ == "__main__":
  main()
-#     time.sleep(2)
-#     localizar_Close()
+
 
