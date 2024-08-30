@@ -5,29 +5,31 @@ SoulTickt = 5
 
 def localizar_missoes():
     print('Tentando localizar Missões...')
-    missoes = pyautogui.locateOnScreen('Imagens\\Missoes.png', confidence=0.4)
-    if missoes is None:
-        print('Missões não encontrada \n')
-        return False
-    else:
+    
+    try:
+        missoes = pyautogui.locateOnScreen('Imagens\\Missoes.png', confidence=0.4)
         print('Missões encontrada \n')
         missoes = pyautogui.center(missoes)
         pyautogui.click(missoes.x, missoes.y)
         time.sleep(1.5)
         return True
+    
+    except pyautogui.ImageNotFoundException:
+        print('Erro: Imagem "Missões" não encontrada na tela.')
 
 def localizar_eventos():
     print('Tentando localizar Eventos...')
-    eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
-    if eventos is None:
-        print('Eventos não encontrada \n')
-        return False
-    else:
+    
+    try:
+        eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
         print('Eventos encontrado \ns')
         eventos = pyautogui.center(eventos)
         pyautogui.click(eventos.x, eventos.y)
         time.sleep(3)
         return True
+    except pyautogui.ImageNotFoundException:
+        print('Erro: Imagem "Eventos" não encontrada na tela.')
+
 
 def localizar_ev_atual():
     print('Tentando localizar Evento Atual...')
@@ -131,7 +133,6 @@ def localizar_Close():
     else:
         print('Close Quest encontrado \n')
         Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.4)
-        Close = pyautogui.center(Close)
         pyautogui.doubleClick(Close.x, Close.y)
         time.sleep(2)
             
