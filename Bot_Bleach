@@ -1,6 +1,9 @@
 import pyautogui
 import time
 
+
+######### Funcoes para localizar certo elemento da tela e clicar nele #######
+
 def localizar_missoes():
     print('Tentando localizar Missões...')
     try:
@@ -30,21 +33,23 @@ def localizar_eventos():
 def localizar_ev_atual():
     print('Tentando localizar Evento Atual...')
     
-    try:
-        Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.5)
-        return True
-    except pyautogui.ImageNotFoundException:  
-        print("")   
-    try:
-        EvAtual = pyautogui.locateOnScreen('Imagens\\EvAtual.png', confidence=0.4)
-        print('Evento Atual encontrado \n')
-        EvAtual = pyautogui.center(EvAtual)
-        pyautogui.click(EvAtual.x, EvAtual.y)
-        time.sleep(1.5)
-        return True
-    except pyautogui.ImageNotFoundException:
-        print('Erro: Imagem "Evento Atual" não encontrada na tela.')
-        return False
+    while True:
+        try:
+            Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.5)
+            return True
+        except pyautogui.ImageNotFoundException:  
+            print("")   
+        try:
+            EvAtual = pyautogui.locateOnScreen('Imagens\\EvAtual.png', confidence=0.4)
+            print('Evento Atual encontrado \n')
+            EvAtual = pyautogui.center(EvAtual)
+            pyautogui.click(EvAtual.x, EvAtual.y)
+            time.sleep(1.5)
+            return True
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Evento Atual" não encontrada na tela.Tentando novamente...')
+            time.sleep(1)
+
 
 def localizar_quest():
     print('Tentando localizar Quest...')
@@ -192,25 +197,21 @@ def localizar_Retry():
             print('Erro: Imagem "Retry" não encontrada na tela. Tentando novamente...')
             time.sleep(2)
 
-def FuncStart():
-    time.sleep(4)
-    SoulTickt = 3
-    while SoulTickt > 0:
-        print('entrou no loop')
-        SoulTickt = SoulTickt -1
-        if localizar_start_quest():
-            if localizar_exit():
-                if localizar_exit2():
-                    if localizar_Close():
-                         if SoulTickt != 0:
-                            localizar_Retry()
-                         else:
-                             print('')
-                            #  localizar_Home()
-                     
-
-    if SoulTickt == 0:
-        print('Sem Soultickt \n')                       
+def localizar_Home():
+    print('Tentando localizar Home...')
+    while True:
+        
+        try:
+            Home = pyautogui.locateOnScreen('Imagens\\HomeB.png', confidence=0.8)
+            Home = pyautogui.center(Home)
+            print('Home encontrado \n')
+            pyautogui.click(Home.x, Home.y)
+            time.sleep(2)
+            return
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Home" não encontrada na tela.Tentando novamente...')
+        
 
 def OpenGame():
     print('Tentando abrir o jogo...')
@@ -225,12 +226,31 @@ def OpenGame():
         except pyautogui.ImageNotFoundException:
             print('Erro: Imagem "ImgGame" não encontrada na tela. Tentando novamente...')
             time.sleep(2)
-                               
-def main():
-    print('Inicio')
-    time.sleep(1)
-    OpenGame()
 
+######### func para manter o loop das quests normais #######
+
+def FuncStart():
+    time.sleep(4)
+    SoulTickt = 2
+    while SoulTickt > 0:
+        print('entrou no loop')
+        SoulTickt = SoulTickt -1
+        if localizar_start_quest():
+            if localizar_exit():
+                if localizar_exit2():
+                    if localizar_Close():
+                         if SoulTickt != 0:
+                            localizar_Retry()
+                         else:
+                             print('')
+                             localizar_Home()
+                     
+
+    if SoulTickt == 0:
+        print('Sem Soultickt \n')                       
+
+def Quests():
+    
     if localizar_missoes():
         if localizar_eventos():
             if localizar_ev_atual():
@@ -239,6 +259,16 @@ def main():
                         if localizar_prepare_for_quest():
                              FuncStart()
 
+    
+
+######### Main #######                              
+def main():
+    print('Inicio')
+    time.sleep(1)
+    OpenGame()
+    Quests()
+
+    
 if __name__ == "__main__":
  main()
 
