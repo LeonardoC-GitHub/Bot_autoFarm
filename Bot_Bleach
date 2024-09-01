@@ -223,7 +223,123 @@ def localizar_Home():
         except pyautogui.ImageNotFoundException:
             print('Erro: Imagem "Home" não encontrada na tela.Tentando novamente...')
         
+def localizar_BattleIcon():
+    print('Tentando localizar BattleIcon...')
+    while True:
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            pyautogui.click(Close.x, Close.y)
+            time.sleep(2)
+        
+        except pyautogui.ImageNotFoundException:
+            print('')
+        try:
+            BattleIcon = pyautogui.locateOnScreen('Imagens\\BattleIcon.png', confidence=0.8)
+            BattleIcon = pyautogui.center(BattleIcon)
+            print('BattleIcon encontrado \n')
+            pyautogui.click(BattleIcon.x, BattleIcon.y)
+            time.sleep(2)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "BattleIcon" não encontrada na tela.Tentando novamente...')
 
+def localizar_BattleStart():
+    print('Tentando localizar BattleStart...')
+    while True:
+        
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+            time.sleep(2)
+        
+        except pyautogui.ImageNotFoundException:
+            print('')
+        try:
+            BattleStart = pyautogui.locateOnScreen('Imagens\\BattleStart.png', confidence=0.85)
+            BattleStart = pyautogui.center(BattleStart)
+            print('BattleStart encontrado \n')
+            pyautogui.click(BattleStart.x, BattleStart.y)
+            time.sleep(25)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "BattleStart" não encontrada na tela.Tentando novamente...')
+
+def localizar_prepare_for_Battle():
+    print('Tentando localizar BattleIcon...')
+    AttLista=0
+    while True:
+        if AttLista >= 4:
+            try:
+                RefreshList = pyautogui.locateOnScreen('Imagens\\RefreshList.png', confidence=0.8)
+                RefreshList = pyautogui.center(RefreshList)
+                print('RefreshList encontrado \n')
+                pyautogui.click(RefreshList.x, RefreshList.y)
+                time.sleep(2)
+        
+            except pyautogui.ImageNotFoundException:
+             print('')
+        
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+            time.sleep(2)
+        
+        except pyautogui.ImageNotFoundException:
+            print('')
+        try:
+            PrepareForBattle = pyautogui.locateOnScreen('Imagens\\PrepareForBattle.png', confidence=0.6)
+            PrepareForBattle = pyautogui.center(PrepareForBattle)
+            print('PrepareForBattle encontrado \n')
+            pyautogui.click(PrepareForBattle.x, PrepareForBattle.y)
+            time.sleep(2)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Prepare For Battle" não encontrada na tela.Tentando novamente...')
+            time.sleep(0.5)
+            AttLista = AttLista + 1
+            
+            
+        
+        
+            
+
+def localizar_ExitBattle():
+    print('Tentando localizar BattleIcon...')
+    while True:
+             
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+            time.sleep(2)
+        
+        except pyautogui.ImageNotFoundException:
+            print('')
+        try:
+            ExitBattle = pyautogui.locateOnScreen('Imagens\\ExitBattle.png', confidence=0.8)
+            ExitBattle = pyautogui.center(ExitBattle)
+            print('ExitBattle encontrado \n')
+            pyautogui.click(ExitBattle.x, ExitBattle.y)
+            time.sleep(0.5)
+            pyautogui.click(ExitBattle.x, ExitBattle.y)
+            time.sleep(0.5)
+            pyautogui.click(ExitBattle.x, ExitBattle.y)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Prepare For Battle" não encontrada na tela.Tentando novamente...')
+  
+
+     
 def OpenGame():
     print('Tentando abrir o jogo...')
     while True:
@@ -270,14 +386,22 @@ def Quests():
                         if localizar_prepare_for_quest():
                              FuncStart()
 
-    
+def FuncBattles():
+    NumBattles = 2
+    while NumBattles > 0 :
+        if localizar_BattleIcon():
+            if localizar_prepare_for_Battle():
+                if localizar_BattleStart():
+                    if localizar_ExitBattle():
+                     NumBattles = NumBattles -1
 
 ######### Main #######                              
 def main():
     print('Inicio')
     time.sleep(1)
     OpenGame()
-    Quests()
+    # Quests()
+    FuncBattles()
 
     
 if __name__ == "__main__":
