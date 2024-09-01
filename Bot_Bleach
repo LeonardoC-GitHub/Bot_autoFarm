@@ -214,11 +214,11 @@ def localizar_Home():
         except pyautogui.ImageNotFoundException:
             print('')
         try:
-            Home = pyautogui.locateOnScreen('Imagens\\Home.png', confidence=0.8)
+            Home = pyautogui.locateOnScreen('Imagens\\Home.png', confidence=0.9)
             Home = pyautogui.center(Home)
             print('Home encontrado \n')
             pyautogui.click(Home.x, Home.y)
-            time.sleep(2)
+            time.sleep(4)
             return True
         
         except pyautogui.ImageNotFoundException:
@@ -274,6 +274,19 @@ def localizar_prepare_for_Battle():
     print('Tentando localizar BattleIcon...')
     AttLista=0
     while True:
+        try:
+            PrepareForBattle = pyautogui.locateOnScreen('Imagens\\PrepareForBattle.png', confidence=0.6)
+            PrepareForBattle = pyautogui.center(PrepareForBattle)
+            print('PrepareForBattle encontrado \n')
+            pyautogui.click(PrepareForBattle.x, PrepareForBattle.y)
+            time.sleep(2)
+            return True
+        
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Prepare For Battle" não encontrada na tela.Tentando novamente...')
+            time.sleep(0.5)
+            AttLista = AttLista + 1
+                             
         if AttLista >= 4:
             try:
                 RefreshList = pyautogui.locateOnScreen('Imagens\\RefreshList.png', confidence=0.8)
@@ -304,19 +317,6 @@ def localizar_prepare_for_Battle():
         
         except pyautogui.ImageNotFoundException:
             print('')
-        try:
-            PrepareForBattle = pyautogui.locateOnScreen('Imagens\\PrepareForBattle.png', confidence=0.6)
-            PrepareForBattle = pyautogui.center(PrepareForBattle)
-            print('PrepareForBattle encontrado \n')
-            pyautogui.click(PrepareForBattle.x, PrepareForBattle.y)
-            time.sleep(2)
-            return True
-        
-        except pyautogui.ImageNotFoundException:
-            print('Erro: Imagem "Prepare For Battle" não encontrada na tela.Tentando novamente...')
-            time.sleep(0.5)
-            AttLista = AttLista + 1
-                             
 
 def localizar_ExitBattle():
     print('Tentando localizar BattleIcon...')
@@ -362,24 +362,23 @@ def OpenGame():
             time.sleep(2)
 
 ######### func para manter o loop das quests normais #######
-
 def FuncStart():
     time.sleep(4)
     SoulTickt = 1
     while SoulTickt > 0:
         print('entrou no loop')
-        SoulTickt = SoulTickt -1
+        SoulTickt -= 1
         if localizar_start_quest():
             if localizar_exit():
                 if localizar_exit2():
                     if localizar_Close():
                          if SoulTickt > 1:
-                            localizar_Retry()
+                             localizar_Retry()
                          else:
                              print('indo para a pagina inicial')
                              if localizar_Home():
                                  FuncBattles()
-                     
+        
 
     if SoulTickt == 0:
         print('Sem Soultickt \n')                       
