@@ -114,14 +114,14 @@ def localizar_exit():
             time.sleep(2)
 
         except pyautogui.ImageNotFoundException:
-            print('Erro: Imagem "Close" não encontrada na tela.Tentando novamente...')
+            print('')
             
         try:
             Exit = pyautogui.locateOnScreen('Imagens\\Exit.png', confidence=0.7)
             print('Saída 1 encontrada \n')
             Exit = pyautogui.center(Exit)
             pyautogui.click(Exit.x, Exit.y)
-            time.sleep(1)
+            time.sleep(0.5)
             pyautogui.click(Exit.x, Exit.y)
             time.sleep(0.5)
             pyautogui.click(Exit.x, Exit.y)
@@ -144,7 +144,7 @@ def localizar_exit2():
             pyautogui.click(Close.x, Close.y)
 
         except pyautogui.ImageNotFoundException:
-            print('Erro: Imagem "Close" não encontrada na tela.Tentando novamente...')
+            print('')
             
         try:
             Exit2 = pyautogui.locateOnScreen('Imagens\\Exit2.png', confidence=0.7)
@@ -186,7 +186,7 @@ def localizar_Retry():
             time.sleep(2)
         
         except pyautogui.ImageNotFoundException:
-            print('Erro: Imagem "Close" não encontrada na tela.Tentando novamente...')
+            print('')
         
         try:
             Retry = pyautogui.locateOnScreen('Imagens\\Retry.png', confidence=0.7)
@@ -203,6 +203,15 @@ def localizar_Home():
     print('Tentando localizar Home...')
     while True:
         
+        try:
+            Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
+            Close = pyautogui.center(Close)
+            print('Close encontrado \n')
+            pyautogui.click(Close.x, Close.y)
+            time.sleep(2)
+        
+        except pyautogui.ImageNotFoundException:
+            print('')
         try:
             Home = pyautogui.locateOnScreen('Imagens\\HomeB.png', confidence=0.8)
             Home = pyautogui.center(Home)
@@ -233,7 +242,7 @@ def OpenGame():
 
 def FuncStart():
     time.sleep(4)
-    SoulTickt = 4
+    SoulTickt = 5
     while SoulTickt > 0:
         print('entrou no loop')
         SoulTickt = SoulTickt -1
