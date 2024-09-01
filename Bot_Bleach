@@ -11,7 +11,7 @@ def localizar_missoes():
         print('Missões encontrada \n')
         missoes = pyautogui.center(missoes)
         pyautogui.click(missoes.x, missoes.y)
-        time.sleep(1.5)
+        time.sleep(0.5)
         return True
     except pyautogui.ImageNotFoundException:
         print('Erro: Imagem "Missões" não encontrada na tela.')
@@ -19,23 +19,24 @@ def localizar_missoes():
 
 def localizar_eventos():
     print('Tentando localizar Eventos...')
-    try:
-        eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
-        print('Eventos encontrado \n')
-        eventos = pyautogui.center(eventos)
-        pyautogui.click(eventos.x, eventos.y)
-        time.sleep(3)
-        return True
-    except pyautogui.ImageNotFoundException:
-        print('Erro: Imagem "Eventos" não encontrada na tela.')
-        return False
+    while True:
+        try:
+            eventos = pyautogui.locateOnScreen('Imagens\\Eventos.png', confidence=0.4)
+            print('Eventos encontrado \n')
+            eventos = pyautogui.center(eventos)
+            pyautogui.click(eventos.x, eventos.y)
+            time.sleep(3)
+            return True
+        except pyautogui.ImageNotFoundException:
+            print('Erro: Imagem "Eventos" não encontrada na tela.')
+            time.sleep(0.5)
 
 def localizar_ev_atual():
     print('Tentando localizar Evento Atual...')
     
     while True:
         try:
-            Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.5)
+            Quest = pyautogui.locateOnScreen('Imagens\\Quest.png', confidence=0.6)
             return True
         except pyautogui.ImageNotFoundException:  
             print("")   
@@ -213,12 +214,12 @@ def localizar_Home():
         except pyautogui.ImageNotFoundException:
             print('')
         try:
-            Home = pyautogui.locateOnScreen('Imagens\\HomeB.png', confidence=0.8)
+            Home = pyautogui.locateOnScreen('Imagens\\Home.png', confidence=0.8)
             Home = pyautogui.center(Home)
             print('Home encontrado \n')
             pyautogui.click(Home.x, Home.y)
             time.sleep(2)
-            return
+            return True
         
         except pyautogui.ImageNotFoundException:
             print('Erro: Imagem "Home" não encontrada na tela.Tentando novamente...')
@@ -283,6 +284,16 @@ def localizar_prepare_for_Battle():
         
             except pyautogui.ImageNotFoundException:
              print('')
+             
+            try:
+                Ok = pyautogui.locateOnScreen('Imagens\\Ok.png', confidence=0.8)
+                Ok = pyautogui.center(Ok)
+                print('Ok encontrado \n')
+                pyautogui.click(Ok.x, Ok.y)
+                time.sleep(1)
+        
+            except pyautogui.ImageNotFoundException:
+             print('') 
         
         try:
             Close = pyautogui.locateOnScreen('Imagens\\Close.png', confidence=0.8)
@@ -305,11 +316,7 @@ def localizar_prepare_for_Battle():
             print('Erro: Imagem "Prepare For Battle" não encontrada na tela.Tentando novamente...')
             time.sleep(0.5)
             AttLista = AttLista + 1
-            
-            
-        
-        
-            
+                             
 
 def localizar_ExitBattle():
     print('Tentando localizar BattleIcon...')
@@ -358,7 +365,7 @@ def OpenGame():
 
 def FuncStart():
     time.sleep(4)
-    SoulTickt = 5
+    SoulTickt = 4
     while SoulTickt > 0:
         print('entrou no loop')
         SoulTickt = SoulTickt -1
@@ -370,7 +377,8 @@ def FuncStart():
                             localizar_Retry()
                          else:
                              print('')
-                             localizar_Home()
+                             if localizar_Home():
+                                 FuncBattles()
                      
 
     if SoulTickt == 0:
@@ -400,8 +408,7 @@ def main():
     print('Inicio')
     time.sleep(1)
     OpenGame()
-    # Quests()
-    FuncBattles()
+    Quests()
 
     
 if __name__ == "__main__":
