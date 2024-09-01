@@ -123,6 +123,8 @@ def localizar_exit():
             pyautogui.click(Exit.x, Exit.y)
             time.sleep(1)
             pyautogui.click(Exit.x, Exit.y)
+            time.sleep(0.5)
+            pyautogui.click(Exit.x, Exit.y)
             time.sleep(4)
             return True
         
@@ -231,7 +233,7 @@ def OpenGame():
 
 def FuncStart():
     time.sleep(4)
-    SoulTickt = 2
+    SoulTickt = 4
     while SoulTickt > 0:
         print('entrou no loop')
         SoulTickt = SoulTickt -1
